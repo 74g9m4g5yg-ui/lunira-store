@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunira | متجر العبايات الفاخرة</title>
+    <style>
+        /* إعدادات الخطوط والألوان الأساسية للمتجر */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #121212; /* اللون الداكن الفخم المماثل لمتجرك */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* شريط التنقل العلوي */
+        header {
+            background-color: #1a1a1a;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2a2a2a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* عارض الصور المتحرك المتميز (Carousel) */
+        .hero-carousel {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* هنا يمكنك وضع رابط صورة العباية الأساسية للمتجر */
+        .carousel-slide {
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(18,18,18,0.9)), url('https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1200'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .brand-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .brand-subtitle {
+            font-size: 16px;
+            color: #cccccc;
+            max-width: 500px;
+            padding: 0 20px;
+        }
+
+        /* أزرار التحكم في عارض الصور */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-prev { right: 20px; }
+        .btn-next { left: 20px; }
+
+        /* قسم المنتجات (Grid) */
+        .products-section {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: #ffffff;
+            margin: 10px auto 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* بطاقة المنتج الواحد */
+        .product-card {
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #444;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 380px;
+            background-color: #252525;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* استبدلي هذه الروابط العشوائية بروابط صور عباياتك الفعلية */
+        .img-1 { background-image: url('https://images.unsplash.com/photo-1609357605129-26f69add5d6e?q=80&w=500'); }
+        .img-2 { background-image: url('https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=500'); }
+        .img-3 { background-image: url('https://images.unsplash.com/photo-1549064482-6779ba329226?q=80&w=500'); }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #b3b3b3;
+            margin-bottom: 15px;
+        }
+
+        .order-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ffffff;
+            color: #121212;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .order-btn:hover {
+            background-color: #e6e6e6;
+        }
+
+        /* أسفل الموقعFooter */
+        footer {
+            background-color: #1a1a1a;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #2a2a2a;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* تحسينات العرض المتجاوب على الهواتف الذكية */
+        @media (max-width: 768px) {
+            .brand-title { font-size: 36px; }
+            .hero-carousel { height: 350px; }
+            .product-image { height: 320px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شريط التنقل العلوي -->
+    <header>
+        <a href="#" class="logo">LUNIRA</a>
+        <ul class="nav-links">
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#">العبايات</a></li>
+            <li><a href="#">تواصل معنا</a></li>
+        </ul>
+    </header>
+
+    <!-- عارض الصور الرئيسي للبراند -->
+    <section class="hero-carousel">
+        <button class="carousel-btn btn-next">&#10094;</button>
+        <div class="carousel-slide">
+            <h1 class="brand-title">LUNIRA</h1>
+            <p class="brand-subtitle">أفخم التصاميم والعبايات العصرية المصممة خصيصاً لتناسب أناقتكِ الفريدة</p>
+        </div>
+        <button class="carousel-btn btn-prev">&#10095;</button>
+    </section>
+
+    <!-- قسم عرض العبايات والمنتجات -->
+    <section class="products-section">
+        <h2 class="section-title">المجموعة الجديدة</h2>
+        
+        <div class="products-grid">
+            
+            <!-- المنتج الأول -->
+            <div class="product-card">
+                <div class="product-image img-1"></div>
+                <div class="product-info">
+                    <h3 class="product-name">عباية مناسبات فاخرة</h3>
+                    <p class="product-price">٥٥ د.أ</p>
+                    <a href="#" class="order-btn">اطلبي الآن</a>
+                </div>
+            </div>
+
+            <!-- المنتج الثاني -->
+            <div class="product-card">
+                <div class="product-image img-2"></div>
+                <div class="product-info">
+                    <h3 class="product-name">عباية سفر عملية</h3>
+                    <p class="product-price">٤0 د.أ</p>
+                    <a href="#" class="order-btn">اطلبي الآن</a>
+                </div>
+            </div>
+
+            <!-- المنتج الثالث -->
+            <div class="product-card">
+                <div class="product-image img-3"></div>
+                <div class="product-info">
+                    <h3 class="product-name">عباية كلاسيك سوداء</h3>
+                    <p class="product-price">٤٥ د.أ</p>
+                    <a href="#" class="order-btn">اطلبي الآن</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+        <p>&copy; 2026 Lunira. جميع الحقوق محفوظة.</p>
+    </footer>
+
+</body>
+</html>
